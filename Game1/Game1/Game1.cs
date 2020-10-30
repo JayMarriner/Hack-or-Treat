@@ -2,6 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using System.Timers;
+
 namespace Game1
 {
     /// <summary>
@@ -11,6 +17,10 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GameContent gameContent;
+        private int screenWidth = 0;
+        private int screenHeight = 0;
+        public List<Player> players = new List<Player>();
 
         public Game1()
         {
@@ -41,6 +51,28 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            gameContent = new GameContent(Content);
+            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+            if(screenWidth >= 1920)
+            {
+                screenWidth = 1920;
+            }
+            if(screenHeight >= 1080)
+            {
+                screenHeight = 1080;
+            }
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            //Create player
+            int playerX = (gameContent.player.Width / 2) + 10;
+            int playerY = screenHeight - (gameContent.player.Height / 2) - 10;
+            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 5));
+
         }
 
         /// <summary>
@@ -63,7 +95,7 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-
+            players.ForEach(x => x.Update());
             base.Update(gameTime);
         }
 
@@ -73,10 +105,12 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            players.ForEach(x => x.Draw());
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
