@@ -22,3 +22,4 @@ D:\All files\Personal\Hack or Treat\Game1\Game1\obj\x86\Debug\Game1.csproj.CoreC
 D:\All files\Personal\Hack or Treat\Game1\Game1\obj\x86\Debug\Game1.csproj.CopyComplete
 D:\All files\Personal\Hack or Treat\Game1\Game1\obj\x86\Debug\Game1.exe
 D:\All files\Personal\Hack or Treat\Game1\Game1\obj\x86\Debug\Game1.pdb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\wall.xnb
