@@ -91,6 +91,7 @@ namespace Game1
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
             walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(500, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(750, 266, spriteBatch, gameContent, true));
 
         }
 
