@@ -25,13 +25,12 @@ namespace Game1
         private bool wallHit;
         private int newPosX;
         private int newPosY;
+        private bool moving;
 
         public Player(int x, int y, float screenW, float screenH, SpriteBatch spriteBatch, GameContent gameContent, int speed)
         {
             X = x;
             Y = y;
-            newPosX = X;
-            newPosY = Y;
             player = gameContent.player;
             width = player.Width;
             height = player.Height;
@@ -59,8 +58,12 @@ namespace Game1
                 }
                 else
                 {
-                    X = newPosX;
-                    Y = newPosY;
+                    if (moving)
+                    {
+                        X = newPosX;
+                        Y = newPosY;
+                        moving = false;
+                    }
                 }
             });
         }
@@ -71,6 +74,8 @@ namespace Game1
             if (keyPress.IsKeyDown(Keys.W))
             {
                 newPosY = Y - Speed;
+                newPosX = X;
+                moving = true;
             }
         }
     }
