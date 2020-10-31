@@ -5,12 +5,14 @@
   <Config />
   <SourceFiles>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/../../../player.png</File>
-    <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/background.jpg</File>
+    <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/background.png</File>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/player.png</File>
+    <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/playerLeft.png</File>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/wall.png</File>
   </SourceFiles>
   <DestFiles>
     <File>player.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

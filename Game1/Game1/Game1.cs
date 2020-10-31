@@ -78,7 +78,7 @@ namespace Game1
             }
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-           // graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             //Create player
@@ -90,8 +90,16 @@ namespace Game1
             //Level 1
             walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
+            walls.Add(new Wall(175, 825, spriteBatch, gameContent, true));
             walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(500, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(700, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(775, 375, spriteBatch, gameContent, true));
+            walls.Add(new Wall(775, 175, spriteBatch, gameContent, true));
+            walls.Add(new Wall(900, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(1100, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(1300, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(1500, 500, spriteBatch, gameContent, false));
 
             //Create background
             backgrounds.Add(new Background(0, 0, 1080, 1920, spriteBatch, gameContent));
