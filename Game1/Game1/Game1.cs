@@ -66,17 +66,20 @@ namespace Game1
             }
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            graphics.IsFullScreen = true;
+           // graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             //Create player
             int playerX = (gameContent.player.Width / 2) + 10;
             int playerY = screenHeight - (gameContent.player.Height / 2) - 10;
-            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 5));
+            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 1));
 
             //Create walls
+            //Level 1
             walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
+            walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(500, 500, spriteBatch, gameContent, false));
 
         }
 
@@ -100,7 +103,8 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-            players.ForEach(x => x.Update());
+            players.ForEach(x => x.movementUpdate());
+            players.ForEach(x => x.Update(walls));
             base.Update(gameTime);
         }
 

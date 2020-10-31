@@ -12,22 +12,28 @@ namespace Game1
 {
     public class Wall
     {
-        public float X { get; set; } //Wall x coord
-        public float Y { get; set; } //Wall y coord
+        public int X { get; set; } //Wall x coord
+        public int Y { get; set; } //Wall y coord
+        public float width { get; set; }
+        public float height { get; set; }
         private float rotation { get; set; } //Rotation
         private Texture2D wall { get; set; } //Wall image
         private SpriteBatch spriteBatch;
+        private bool rotated;
 
-        public Wall(float x, float y, SpriteBatch spriteBatch, GameContent gameContent, bool vert)
+        public Wall(int x, int y, SpriteBatch spriteBatch, GameContent gameContent, bool vert)
         {
             X = x;
             Y = y;
             wall = gameContent.wall;
+            width = wall.Width;
+            height = wall.Height;
             this.spriteBatch = spriteBatch;
             if (vert)
             {
                 rotation = 2.00f;
-                rotation = (float)Math.PI / rotation; 
+                rotation = (float)Math.PI / rotation;
+                rotated = true;
             }
             else
             {
@@ -39,6 +45,21 @@ namespace Game1
         public void Draw()
         {
             spriteBatch.Draw(wall, new Vector2(X, Y), null, Color.White, rotation, new Vector2(wall.Width/2, wall.Height/2), 1.0f, SpriteEffects.None, 0);
+        }
+
+        public Rectangle hitBox
+        {
+            get
+            {
+                if (rotated)
+                {
+                    return new Rectangle((int)X, (int)Y, (int)height, (int)width);
+                }
+                else
+                {
+                    return new Rectangle((int)X, (int)Y, (int)width, (int)height);
+                }
+            }
         }
     }
 }

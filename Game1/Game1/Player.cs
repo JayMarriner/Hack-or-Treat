@@ -7,25 +7,31 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Draw = System.Drawing;
 
 namespace Game1
 {
     public class Player
     {
-        public float X { get; set; } //Players x coord
-        public float Y { get; set; } //Players y coord
-        public float width { get; set; } //Players width
-        public float height { get; set; } //Players height
+        public int X { get; set; } //Players x coord
+        public int Y { get; set; } //Players y coord
+        public int width { get; set; } //Players width
+        public int height { get; set; } //Players height
         public float screenWidth { get; set; } //Width of screen
         public float screenHeight { get; set; } //Height of screen
         private Texture2D player { get; set; } //Player image
         public int Speed { get; set; }
         private SpriteBatch spriteBatch;
+        private bool wallHit;
+        private int newPosX;
+        private int newPosY;
 
-        public Player(float x, float y, float screenW, float screenH, SpriteBatch spriteBatch, GameContent gameContent, int speed)
+        public Player(int x, int y, float screenW, float screenH, SpriteBatch spriteBatch, GameContent gameContent, int speed)
         {
             X = x;
             Y = y;
+            newPosX = X;
+            newPosY = Y;
             player = gameContent.player;
             width = player.Width;
             height = player.Height;
@@ -42,65 +48,31 @@ namespace Game1
             spriteBatch.Draw(player, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
         }
 
-        public void Update()
+        public Rectangle hitBox => new Rectangle(newPosX, newPosY, width, height);
+
+        public void Update(List<Wall> walls)
+        {
+            walls.ForEach(x => {
+                if (this.hitBox.Intersects(x.hitBox))
+                {
+                    return;
+                }
+                else
+                {
+                    X = newPosX;
+                    Y = newPosY;
+                }
+            });
+        }
+
+        public void movementUpdate()
         {
             KeyboardState keyPress = Keyboard.GetState();
-            if (keyPress.IsKeyDown(Keys.D))
-            {
-                for (int i = 0; i < Speed; i++)
-                {
-                    if (X >= 1920 - width / 2)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        X++;
-                    }
-                }
-            }
-            if (keyPress.IsKeyDown(Keys.A))
-            {
-                for (int i = 0; i < Speed; i++)
-                {
-                    if (X <= 0 + width / 2)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        X--;
-                    }
-                }
-            }
             if (keyPress.IsKeyDown(Keys.W))
             {
-                for (int i = 0; i < Speed; i++)
-                {
-                    if (Y <= 0 + height / 2)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        Y--;
-                    }
-                }
-            }
-            if (keyPress.IsKeyDown(Keys.S))
-            {
-                for (int i = 0; i < Speed; i++)
-                {
-                    if (Y >= 1080 - height / 2)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        Y++;
-                    }
-                }
+                newPosY = Y - Speed;
             }
         }
     }
 }
+
