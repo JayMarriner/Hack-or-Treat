@@ -46,12 +46,13 @@ namespace Game1
             spriteBatch.Draw(player, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
         }
 
-        public Rectangle hitBox => new Rectangle(newPosX, newPosY, width, height);
+        public Rectangle hitBox => new Rectangle(X, Y, width, height);
+        public Rectangle newMove => new Rectangle(newPosX, newPosY, width, height);
 
         public void Update(List<Wall> walls)
         {
              foreach(Wall wall in walls){
-                if (this.hitBox.Intersects(wall.hitBox))
+                if (this.newMove.Intersects(wall.hitBox))
                 {
                     return;
                 }

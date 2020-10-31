@@ -18,6 +18,7 @@ namespace Game1
         public float height { get; set; }
         private float rotation { get; set; } //Rotation
         private Texture2D wall { get; set; } //Wall image
+        private Texture2D _texture { get; set; }
         private SpriteBatch spriteBatch;
         private bool rotated;
 
@@ -44,6 +45,7 @@ namespace Game1
 
         public void Draw()
         {
+            spriteBatch.Draw(Game.BlankTexture, hitBox, Color.White);
             spriteBatch.Draw(wall, new Vector2(X, Y), null, Color.White, rotation, new Vector2(wall.Width/2, wall.Height/2), 1.0f, SpriteEffects.None, 0);
         }
 
