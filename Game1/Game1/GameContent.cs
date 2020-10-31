@@ -15,6 +15,9 @@ namespace Game1
         public Texture2D player { get; set; }
         public Texture2D wall { get; set; }
         public Texture2D background { get; set; }
+        public Texture2D playerLeft { get; set; }
+        public Texture2D playerDown { get; set; }
+        public Texture2D playerUp { get; set; }
 
         public GameContent(ContentManager Content)
         {
@@ -22,6 +25,9 @@ namespace Game1
             player = Content.Load<Texture2D>("player");
             wall = Content.Load<Texture2D>("wall");
             background = Content.Load<Texture2D>("background");
+            playerLeft = Content.Load<Texture2D>("playerLeft");
+            playerDown = Content.Load<Texture2D>("playerDown");
+            playerUp = Content.Load<Texture2D>("playerUp");
         }
     }
 }

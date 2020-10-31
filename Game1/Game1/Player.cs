@@ -19,23 +19,31 @@ namespace Game1
         public int height { get; set; } //Players height
         public float screenWidth { get; set; } //Width of screen
         public float screenHeight { get; set; } //Height of screen
-        private Texture2D player { get; set; } //Player image
+        private Texture2D playerRight { get; set; } //Player image
         public int Speed { get; set; }
         private SpriteBatch spriteBatch;
         private int newPosX;
         private int newPosY;
         private bool moving;
+        private Texture2D playerLeft { get; set; }
+        private Texture2D playerDown { get; set; }
+        private Texture2D playerUp { get; set; }
+        private int direction = 4;
+
 
         public Player(int x, int y, float screenW, float screenH, SpriteBatch spriteBatch, GameContent gameContent, int speed)
         {
             X = x;
             Y = y;
-            player = gameContent.player;
-            width = player.Width;
-            height = player.Height;
+            playerRight = gameContent.player;
+            playerLeft = gameContent.playerLeft;
+            playerUp = gameContent.playerUp;
+            playerDown = gameContent.playerDown;
+            width = playerRight.Width;
+            height = playerRight.Height;
             this.spriteBatch = spriteBatch;
-            screenWidth = screenWidth + (player.Width / 2);
-            screenHeight = screenHeight + (player.Height / 2);
+            screenWidth = screenWidth + (playerRight.Width / 2);
+            screenHeight = screenHeight + (playerRight.Height / 2);
             Speed = speed;
         }
 
@@ -43,7 +51,22 @@ namespace Game1
         {
             float Xcentre = height / 2;
             float Ycentre = width / 2;
-            spriteBatch.Draw(player, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            if (direction == 1)
+            {
+                spriteBatch.Draw(playerUp, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            }
+            if (direction == 2)
+            {
+                spriteBatch.Draw(playerDown, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            }
+            if (direction == 3)
+            {
+                spriteBatch.Draw(playerLeft, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            }
+            if (direction == 4)
+            {
+                spriteBatch.Draw(playerRight, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            }
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), hitBox, Color.White);
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), newMove, Color.White);
         }
@@ -80,24 +103,28 @@ namespace Game1
                 newPosY = Y - Speed;
                 newPosX = X;
                 moving = true;
+                direction = 1;
             }
             if (keyPress.IsKeyDown(Keys.S))
             {
                 newPosY = Y + Speed;
                 newPosX = X;
                 moving = true;
+                direction = 2;
             }
             if (keyPress.IsKeyDown(Keys.A))
             {
                 newPosY = Y;
                 newPosX = X - Speed;
                 moving = true;
+                direction = 3;
             }
             if (keyPress.IsKeyDown(Keys.D))
             {
                 newPosY = Y;
                 newPosX = X + Speed;
                 moving = true;
+                direction = 4;
             }
         }
     }

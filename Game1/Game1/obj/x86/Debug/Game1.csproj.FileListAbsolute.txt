@@ -25,3 +25,5 @@ D:\All files\Personal\Hack or Treat\Game1\Game1\obj\x86\Debug\Game1.pdb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\wall.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\background.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerLeft.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerDown.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerUp.xnb
