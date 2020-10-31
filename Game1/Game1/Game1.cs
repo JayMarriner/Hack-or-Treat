@@ -72,7 +72,7 @@ namespace Game1
             //Create player
             int playerX = (gameContent.player.Width / 2) + 10;
             int playerY = screenHeight - (gameContent.player.Height / 2) - 10;
-            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 1));
+            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 5));
 
             //Create walls
             //Level 1

@@ -22,7 +22,6 @@ namespace Game1
         private Texture2D player { get; set; } //Player image
         public int Speed { get; set; }
         private SpriteBatch spriteBatch;
-        private bool wallHit;
         private int newPosX;
         private int newPosY;
         private bool moving;
@@ -51,8 +50,8 @@ namespace Game1
 
         public void Update(List<Wall> walls)
         {
-            walls.ForEach(x => {
-                if (this.hitBox.Intersects(x.hitBox))
+             foreach(Wall wall in walls){
+                if (this.hitBox.Intersects(wall.hitBox))
                 {
                     return;
                 }
@@ -65,7 +64,7 @@ namespace Game1
                         moving = false;
                     }
                 }
-            });
+            }
         }
 
         public void movementUpdate()
@@ -75,6 +74,24 @@ namespace Game1
             {
                 newPosY = Y - Speed;
                 newPosX = X;
+                moving = true;
+            }
+            if (keyPress.IsKeyDown(Keys.S))
+            {
+                newPosY = Y + Speed;
+                newPosX = X;
+                moving = true;
+            }
+            if (keyPress.IsKeyDown(Keys.A))
+            {
+                newPosY = Y;
+                newPosX = X - Speed;
+                moving = true;
+            }
+            if (keyPress.IsKeyDown(Keys.D))
+            {
+                newPosY = Y;
+                newPosX = X + Speed;
                 moving = true;
             }
         }
