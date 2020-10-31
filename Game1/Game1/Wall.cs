@@ -59,7 +59,7 @@ namespace Game1
             {
                 if (rotated)
                 {
-                    return new Rectangle((int)X - 25, (int)Y - 90, (int)wall.Height, (int)wall.Width);
+                    return new Rectangle((int)X - 25, (int)Y - 100, (int)wall.Height, (int)wall.Width);
                 }
                 else
                 {

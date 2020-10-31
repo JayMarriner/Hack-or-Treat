@@ -48,25 +48,27 @@ namespace Game1
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), newMove, Color.White);
         }
 
-        public Rectangle hitBox => new Rectangle(X, Y, width, height);
-        public Rectangle newMove => new Rectangle(newPosX, newPosY, width, height);
+        public Rectangle hitBox => new Rectangle(X - width, Y - height/4, width, height);
+        public Rectangle newMove => new Rectangle(newPosX - width, newPosY - height/4, width, height);
 
         public void Update(List<Wall> walls)
         {
-             foreach(Wall wall in walls){
+             foreach(Wall wall in walls)
+            {
                 if (this.newMove.Intersects(wall.hitBox))
                 {
                     return;
                 }
-                else
+            }
+            if (moving)
+            {
+                if(newPosX > 1920 || newPosX < 0 + width || newPosY < 0 || newPosY > 1080 - height)
                 {
-                    if (moving)
-                    {
-                        X = newPosX;
-                        Y = newPosY;
-                        moving = false;
-                    }
+                    return;
                 }
+                X = newPosX;
+                Y = newPosY;
+                moving = false;
             }
         }
 

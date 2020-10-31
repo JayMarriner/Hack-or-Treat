@@ -22,6 +22,7 @@ namespace Game1
         private int screenHeight = 0;
         public List<Player> players = new List<Player>();
         public List<Wall> walls = new List<Wall>();
+        public List<Background> backgrounds = new List<Background>();
         private static Texture2D _blankTexture;
 
         public static Texture2D BlankTexture(SpriteBatch s)
@@ -29,7 +30,7 @@ namespace Game1
             if (_blankTexture == null)
             {
                 _blankTexture = new Texture2D(s.GraphicsDevice, 1, 1);
-                _blankTexture.SetData(new[] { Color.Red });
+                //_blankTexture.SetData(new[] { Color.Red });
             }
             return _blankTexture;
         }
@@ -81,8 +82,8 @@ namespace Game1
             graphics.ApplyChanges();
 
             //Create player
-            int playerX = (gameContent.player.Width / 2) + 10;
-            int playerY = screenHeight - (gameContent.player.Height / 2) - 10;
+            int playerX = (gameContent.player.Width / 2) + 50;
+            int playerY = screenHeight - (gameContent.player.Height / 2) - 50;
             players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 5));
 
             //Create walls
@@ -91,7 +92,9 @@ namespace Game1
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
             walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(500, 500, spriteBatch, gameContent, false));
-            walls.Add(new Wall(750, 266, spriteBatch, gameContent, true));
+
+            //Create background
+            backgrounds.Add(new Background(0, 0, 1080, 1920, spriteBatch, gameContent));
 
         }
 
@@ -130,6 +133,7 @@ namespace Game1
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            backgrounds.ForEach(x => x.Draw());
             players.ForEach(x => x.Draw());
             walls.ForEach(x => x.Draw());
             spriteBatch.End();
