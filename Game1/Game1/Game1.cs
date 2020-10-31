@@ -24,12 +24,12 @@ namespace Game1
         public List<Wall> walls = new List<Wall>();
         private static Texture2D _blankTexture;
 
-        public static Texture2D BlankTexture(this SpriteBatch s)
+        public static Texture2D BlankTexture(SpriteBatch s)
         {
             if (_blankTexture == null)
             {
                 _blankTexture = new Texture2D(s.GraphicsDevice, 1, 1);
-                _blankTexture.SetData(new[] { Color.White });
+                _blankTexture.SetData(new[] { Color.Red });
             }
             return _blankTexture;
         }

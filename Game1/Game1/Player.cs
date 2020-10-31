@@ -44,6 +44,8 @@ namespace Game1
             float Xcentre = height / 2;
             float Ycentre = width / 2;
             spriteBatch.Draw(player, new Vector2(X, Y), null, Color.White, 0, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            spriteBatch.Draw(Game1.BlankTexture(spriteBatch), hitBox, Color.White);
+            spriteBatch.Draw(Game1.BlankTexture(spriteBatch), newMove, Color.White);
         }
 
         public Rectangle hitBox => new Rectangle(X, Y, width, height);
