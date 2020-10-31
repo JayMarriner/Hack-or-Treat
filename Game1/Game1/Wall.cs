@@ -14,35 +14,31 @@ namespace Game1
     {
         public float X { get; set; } //Wall x coord
         public float Y { get; set; } //Wall y coord
-        public float wallWidth { get; set; } //Wall width
-        public float wallHeight { get; set; } //Wall height
         private float rotation { get; set; } //Rotation
         private Texture2D wall { get; set; } //Wall image
         private SpriteBatch spriteBatch;
 
-        public Wall(float x, float y, float width, float height, SpriteBatch spriteBatch, GameContent gameContent, bool vert)
+        public Wall(float x, float y, SpriteBatch spriteBatch, GameContent gameContent, bool vert)
         {
             X = x;
             Y = y;
-            width = wallWidth;
-            height = wallHeight;
             wall = gameContent.wall;
             this.spriteBatch = spriteBatch;
             if (vert)
             {
-                rotation = 45;
+                rotation = 2.00f;
+                rotation = (float)Math.PI / rotation; 
             }
             else
             {
-                rotation = 0;
+                rotation = 1.00f;
+                rotation = (float)Math.PI / rotation;
             }
         }
 
         public void Draw()
         {
-            float Xcentre = wallHeight / 2;
-            float Ycentre = wallWidth / 2;
-            spriteBatch.Draw(wall, new Vector2(X, Y), null, Color.White, rotation, new Vector2(Xcentre, Ycentre), 1.0f, SpriteEffects.None, 0);
+            spriteBatch.Draw(wall, new Vector2(X, Y), null, Color.White, rotation, new Vector2(wall.Width/2, wall.Height/2), 1.0f, SpriteEffects.None, 0);
         }
     }
 }

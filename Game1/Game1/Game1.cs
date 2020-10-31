@@ -75,8 +75,8 @@ namespace Game1
             players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 5));
 
             //Create walls
-            walls.Add(new Wall(200, 500, 500, 50, spriteBatch, gameContent, false));
-            walls.Add(new Wall(200, 750, 280, 50, spriteBatch, gameContent, true));
+            walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
 
         }
 
@@ -115,8 +115,6 @@ namespace Game1
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             players.ForEach(x => x.Draw());
-            spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
             walls.ForEach(x => x.Draw());
             spriteBatch.End();
             base.Draw(gameTime);
