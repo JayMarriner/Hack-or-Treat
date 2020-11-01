@@ -6,6 +6,7 @@
   <SourceFiles>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/../../../player.png</File>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/background.png</File>
+    <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/npc.png</File>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/player.png</File>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/playerDown.png</File>
     <File>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/playerLeft.png</File>
@@ -14,6 +15,7 @@
   </SourceFiles>
   <DestFiles>
     <File>player.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

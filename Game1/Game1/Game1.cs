@@ -23,6 +23,7 @@ namespace Game1
         public List<Player> players = new List<Player>();
         public List<Wall> walls = new List<Wall>();
         public List<Background> backgrounds = new List<Background>();
+        public List<Npc> npcs = new List<Npc>();
         private static Texture2D _blankTexture;
 
         public static Texture2D BlankTexture(SpriteBatch s)
@@ -78,7 +79,7 @@ namespace Game1
             }
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             //Create player
@@ -104,6 +105,8 @@ namespace Game1
             //Create background
             backgrounds.Add(new Background(0, 0, 1080, 1920, spriteBatch, gameContent));
 
+            //NPC
+            npcs.Add(new Npc(100, 100, spriteBatch, gameContent));
         }
 
         /// <summary>
@@ -128,6 +131,7 @@ namespace Game1
             // TODO: Add your update logic here
             players.ForEach(x => x.movementUpdate());
             players.ForEach(x => x.Update(walls));
+            players.ForEach(x => x.Update(npcs));
             base.Update(gameTime);
         }
 
@@ -144,6 +148,7 @@ namespace Game1
             backgrounds.ForEach(x => x.Draw());
             players.ForEach(x => x.Draw());
             walls.ForEach(x => x.Draw());
+            npcs.ForEach(x => x.Draw());
             spriteBatch.End();
             base.Draw(gameTime);
         }

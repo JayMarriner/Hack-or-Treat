@@ -29,6 +29,7 @@ namespace Game1
         private Texture2D playerDown { get; set; }
         private Texture2D playerUp { get; set; }
         private int direction = 4;
+        private bool objHit;
 
 
         public Player(int x, int y, float screenW, float screenH, SpriteBatch spriteBatch, GameContent gameContent, int speed)
@@ -71,8 +72,8 @@ namespace Game1
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), newMove, Color.White);
         }
 
-        public Rectangle hitBox => new Rectangle(X - width, Y - height/4, width, height);
-        public Rectangle newMove => new Rectangle(newPosX - width, newPosY - height/4, width, height);
+        public Rectangle hitBox => new Rectangle(X-40, Y-15, width, height);
+        public Rectangle newMove => new Rectangle(newPosX-40, newPosY-15, width, height);
 
         public void Update(List<Wall> walls)
         {
@@ -85,13 +86,28 @@ namespace Game1
             }
             if (moving)
             {
-                if(newPosX > 1920 || newPosX < 0 + width || newPosY < 0 || newPosY > 1080 - height)
+                if(newPosX > 1920 || newPosX < 0 + width || newPosY < 0 || newPosY > 1080 - height || objHit)
                 {
                     return;
                 }
                 X = newPosX;
                 Y = newPosY;
                 moving = false;
+            }
+        }
+
+        public void Update(List<Npc> npcs)
+        {
+            foreach (Npc npc in npcs)
+            {
+                if (this.newMove.Intersects(npc.hitBox))
+                {
+                    objHit = true;
+                }
+                else
+                {
+                    objHit = false;
+                }
             }
         }
 

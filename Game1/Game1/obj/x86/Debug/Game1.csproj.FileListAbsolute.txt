@@ -27,3 +27,4 @@ D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\ba
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerLeft.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerDown.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerUp.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\npc.xnb
