@@ -106,7 +106,7 @@ namespace Game1
             backgrounds.Add(new Background(0, 0, 1080, 1920, spriteBatch, gameContent));
 
             //NPC
-            npcs.Add(new Npc(100, 100, spriteBatch, gameContent));
+            npcs.Add(new Npc(100, 400, spriteBatch, gameContent,3,500));
         }
 
         /// <summary>
@@ -132,6 +132,8 @@ namespace Game1
             players.ForEach(x => x.movementUpdate());
             players.ForEach(x => x.Update(walls));
             players.ForEach(x => x.Update(npcs));
+            npcs.ForEach(x => x.Update());
+            npcs.ForEach(x => x.Update(players));
             base.Update(gameTime);
         }
 
