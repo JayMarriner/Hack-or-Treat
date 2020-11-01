@@ -19,6 +19,7 @@ namespace Game1
         public Texture2D playerDown { get; set; }
         public Texture2D playerUp { get; set; }
         public Texture2D npc { get; set; }
+        public Texture2D chatbox { get; set; }
 
         public GameContent(ContentManager Content)
         {
@@ -30,6 +31,7 @@ namespace Game1
             playerDown = Content.Load<Texture2D>("playerDown");
             playerUp = Content.Load<Texture2D>("playerUp");
             npc = Content.Load<Texture2D>("npc");
+            chatbox = Content.Load<Texture2D>("chatBox");
         }
     }
 }
