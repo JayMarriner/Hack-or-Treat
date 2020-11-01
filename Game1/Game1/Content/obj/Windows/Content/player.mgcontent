@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/player.png</SourceFile>
-<<<<<<< Updated upstream
-  <SourceTime>2020-10-30T16:17:19.6802812+00:00</SourceTime>
+  <SourceTime>2020-11-01T14:58:37.9942253+00:00</SourceTime>
   <DestFile>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/bin/Windows/Content/player.xnb</DestFile>
-<<<<<<< Updated upstream
-  <DestTime>2020-10-31T13:06:37.1348715+00:00</DestTime>
-=======
-  <SourceTime>2020-10-31T19:25:22.2198222+00:00</SourceTime>
-  <DestFile>D:/All files/Personal/Hack or Treat/Game1/Game1/Content/bin/Windows/Content/player.xnb</DestFile>
-  <DestTime>2020-10-31T19:26:04.3641846+00:00</DestTime>
->>>>>>> Stashed changes
-=======
-  <DestTime>2020-11-01T14:49:31.4056039+00:00</DestTime>
->>>>>>> Stashed changes
+  <DestTime>2020-11-01T15:03:12.9418472+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T22:55:52+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
