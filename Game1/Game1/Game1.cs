@@ -26,6 +26,8 @@ namespace Game1
         public List<Npc> npcs = new List<Npc>();
         private static Texture2D _blankTexture;
 
+        public SpriteFont npcText { get; private set; }
+
         public static Texture2D BlankTexture(SpriteBatch s)
         {
             if (_blankTexture == null)
@@ -89,7 +91,7 @@ namespace Game1
 
             //Create walls
             //Level 1
-            walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
+           // walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
             walls.Add(new Wall(175, 825, spriteBatch, gameContent, true));
             walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
@@ -106,7 +108,7 @@ namespace Game1
             backgrounds.Add(new Background(0, 0, 1080, 1920, spriteBatch, gameContent));
 
             //NPC
-            npcs.Add(new Npc(100, 400, spriteBatch, gameContent,3,500));
+            npcs.Add(new Npc(100, 400, spriteBatch, gameContent, 3, 500));
         }
 
         /// <summary>

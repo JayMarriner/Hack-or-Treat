@@ -18,6 +18,8 @@ namespace Game1
         public int height { get; set; }
         private Texture2D npc { get; set; }
         private Texture2D chatbox { get; set; }
+        private Texture2D chatbox2 { get; set; }
+        private Texture2D text { get; set; }
         private Texture2D _texture { get; set; }
         private SpriteBatch spriteBatch;
         private int startX { get; set; }
@@ -27,7 +29,9 @@ namespace Game1
         private int nextX;
         private bool inc;
         public bool chatBox;
+        public bool chatBox2;
         KeyboardState oldState;
+        public bool textShow;
 
         public Npc(int x, int y, SpriteBatch spriteBatch, GameContent gameContent, int dir, int amount)
         {
@@ -35,6 +39,8 @@ namespace Game1
             Y = y;
             npc = gameContent.npc;
             chatbox = gameContent.chatbox;
+            chatbox2 = gameContent.chatbox2;
+            text = gameContent.text;
             width = npc.Width;
             height = npc.Height;
             this.spriteBatch = spriteBatch;
@@ -48,9 +54,17 @@ namespace Game1
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), hitBox, Color.White);
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), interactionArea, Color.White);
             spriteBatch.Draw(npc, new Vector2(X, Y), null, Color.White, 0, new Vector2(width, height), 1.0f, SpriteEffects.None, 0);
-            if (chatBox == true)
+            if (chatBox)
             {
-                spriteBatch.Draw(chatbox, new Vector2(1920/2 - width/2, 100), null, Color.White, 0, new Vector2(width, height), 1.0f, SpriteEffects.None, 0);
+                spriteBatch.Draw(chatbox, new Vector2(700, 900 - height), null, Color.White, 0, new Vector2(width, height), 1.0f, SpriteEffects.None, 0);
+            }
+            if (chatBox2)
+            {
+                spriteBatch.Draw(chatbox2, new Vector2(700, 900 - height), null, Color.White, 0, new Vector2(width, height), 1.0f, SpriteEffects.None, 0);
+            }
+            if (textShow)
+            {
+                spriteBatch.Draw(text, new Vector2(1700, 100), null, Color.White, 0, new Vector2(width, height), 1.0f, SpriteEffects.None, 0);
             }
         }
 
@@ -71,6 +85,7 @@ namespace Game1
             {
                 if (this.interactionArea.Intersects(player.newMove))
                 {
+                    textShow = true;
                     KeyboardState newState = Keyboard.GetState();  // get the newest state
 
                     // handle the input
@@ -78,10 +93,22 @@ namespace Game1
                     {
                         chatBox = true;
                     }
+                    if (oldState.IsKeyUp(Keys.Space) && newState.IsKeyDown(Keys.Space) && chatBox)
+                    {
+                        chatBox = false;
+                        chatBox2 = true;
+                        oldState = newState;
+                    }
+                    if (oldState.IsKeyUp(Keys.Space) && newState.IsKeyDown(Keys.Space) && chatBox2)
+                    {
+                        chatBox = false;
+                        chatBox2 = false;
+                    }
                     oldState = newState;
                 }
                 else
                 {
+                    chatBox = false;
                     X = nextX;
                     if (inc)
                     {

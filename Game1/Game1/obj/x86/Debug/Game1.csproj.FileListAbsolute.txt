@@ -29,3 +29,6 @@ D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\pl
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\playerUp.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\npc.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\chatBox.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\npcText.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\chatBox2.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\talk.xnb
