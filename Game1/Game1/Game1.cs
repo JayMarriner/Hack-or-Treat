@@ -24,6 +24,8 @@ namespace Game1
         public List<Wall> walls = new List<Wall>();
         public List<Background> backgrounds = new List<Background>();
         public List<Npc> npcs = new List<Npc>();
+        //public List<Knife> knives = new List<Knife>();
+        public List<Enemy> enemies = new List<Enemy>();
         private static Texture2D _blankTexture;
 
         public SpriteFont npcText { get; private set; }
@@ -91,7 +93,7 @@ namespace Game1
 
             //Create walls
             //Level 1
-           // walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
             walls.Add(new Wall(175, 825, spriteBatch, gameContent, true));
             walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
@@ -109,6 +111,12 @@ namespace Game1
 
             //NPC
             npcs.Add(new Npc(100, 400, spriteBatch, gameContent, 3, 500));
+
+            //Knife
+            //knives.Add(new Knife(50, 380, spriteBatch, gameContent, 2));
+
+            //Enemy
+            enemies.Add(new Enemy(700, 650, spriteBatch, gameContent, 100));
         }
 
         /// <summary>
@@ -136,6 +144,10 @@ namespace Game1
             players.ForEach(x => x.Update(npcs));
             npcs.ForEach(x => x.Update());
             npcs.ForEach(x => x.Update(players));
+            enemies.ForEach(x => x.Update());
+            enemies.ForEach(x => x.Update(players));
+            players.ForEach(x => x.attackUpdate(enemies));
+            //knives.ForEach(x => x.Update());
             base.Update(gameTime);
         }
 
@@ -153,6 +165,8 @@ namespace Game1
             players.ForEach(x => x.Draw());
             walls.ForEach(x => x.Draw());
             npcs.ForEach(x => x.Draw());
+            //knives.ForEach(x => x.Draw());
+            enemies.ForEach(x => x.Draw());
             spriteBatch.End();
             base.Draw(gameTime);
         }

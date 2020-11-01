@@ -30,26 +30,44 @@ namespace Game1
         private Texture2D playerUp { get; set; }
         private int direction = 4;
         private bool objHit;
-
+        public bool knife { get; set; }
+        private Texture2D weapon { get; set; }
+        public bool dead;
+        private SpriteBatch knifeSpriteBatch;
+        private Texture2D knifeTex { get; set; }
+        private List<Knife> knives;
+        GameContent gameCon;
+        KeyboardState oldState;
+        bool knifeThrown;
 
         public Player(int x, int y, float screenW, float screenH, SpriteBatch spriteBatch, GameContent gameContent, int speed)
         {
             X = x;
             Y = y;
+            gameCon = gameContent;
             playerRight = gameContent.player;
             playerLeft = gameContent.playerLeft;
             playerUp = gameContent.playerUp;
             playerDown = gameContent.playerDown;
+            weapon = gameContent.weapon;
             width = playerRight.Width;
             height = playerRight.Height;
             this.spriteBatch = spriteBatch;
             screenWidth = screenWidth + (playerRight.Width / 2);
             screenHeight = screenHeight + (playerRight.Height / 2);
             Speed = speed;
+            knifeTex = gameContent.knife;
+            knifeSpriteBatch = spriteBatch;
+            knives = new List<Knife>();
         }
 
         public void Draw()
         {
+            knives.ForEach(x => x.Draw());
+            if (dead)
+            {
+                return;
+            }
             float Xcentre = height / 2;
             float Ycentre = width / 2;
             if (direction == 1)
@@ -70,10 +88,14 @@ namespace Game1
             }
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), hitBox, Color.White);
             spriteBatch.Draw(Game1.BlankTexture(spriteBatch), newMove, Color.White);
+            if (knife)
+            {
+                spriteBatch.Draw(weapon, new Vector2(1700, 1050), null, Color.White, 0, new Vector2(width, height), 1.0f, SpriteEffects.None, 0);
+            }
         }
 
-        public Rectangle hitBox => new Rectangle(X-40, Y-15, width, height);
-        public Rectangle newMove => new Rectangle(newPosX-40, newPosY-15, width, height);
+        public Rectangle hitBox => new Rectangle(X - width/2, Y - height/2, width, height);
+        public Rectangle newMove => new Rectangle(newPosX - width/2, newPosY - height/2, width, height);
 
         public void Update(List<Wall> walls)
         {
@@ -111,8 +133,39 @@ namespace Game1
             }
         }
 
+        public void attackUpdate(List<Enemy> enemies)
+        {
+            knives.ForEach(x => x.knifeUpdatePlayer(enemies));
+            foreach (Enemy enemy in enemies)
+            {
+                if (this.newMove.Intersects(enemy.newMove))
+                {
+                    return;
+                }
+                else
+                {
+                    KeyboardState newState = Keyboard.GetState();  // get the newest state
+
+                    // handle the input
+                    if (oldState.IsKeyUp(Keys.L) && newState.IsKeyDown(Keys.L))
+                    {
+                        if (knife)
+                        {
+                            knives.Add(new Knife(X - width / 2, Y + 10, knifeSpriteBatch, gameCon, 8, direction));
+                        }
+                        knifeThrown = true;
+                    }
+                }
+
+            }
+        }
+
         public void movementUpdate()
         {
+            if (dead)
+            {
+                return;
+            }
             KeyboardState keyPress = Keyboard.GetState();
             if (keyPress.IsKeyDown(Keys.W))
             {

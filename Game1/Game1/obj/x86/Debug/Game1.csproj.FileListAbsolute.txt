@@ -32,3 +32,6 @@ D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\ch
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\npcText.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\chatBox2.xnb
 D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\talk.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\weapon.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\knife.xnb
+D:\All files\Personal\Hack or Treat\Game1\Game1\bin\Windows\x86\Debug\Content\enemy.xnb

@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Background.cs" />
     <Compile Include="GameContent.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Npc.cs" />
+    <Compile Include="Knife.cs" />
     <Compile Include="Wall.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Game1.cs" />

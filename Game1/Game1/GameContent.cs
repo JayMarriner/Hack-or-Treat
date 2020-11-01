@@ -22,6 +22,9 @@ namespace Game1
         public Texture2D chatbox { get; set; }
         public Texture2D chatbox2 { get; set; }
         public Texture2D text { get; set; }
+        public Texture2D weapon { get; set; }
+        public Texture2D knife { get; set; }
+        public Texture2D enemy { get; set; }
 
         public GameContent(ContentManager Content)
         {
@@ -36,6 +39,9 @@ namespace Game1
             chatbox = Content.Load<Texture2D>("chatBox");
             chatbox2 = Content.Load<Texture2D>("chatBox2");
             text = Content.Load<Texture2D>("talk");
+            weapon = Content.Load<Texture2D>("weapon");
+            knife = Content.Load<Texture2D>("knife");
+            enemy = Content.Load<Texture2D>("enemy");
         }
     }
 }

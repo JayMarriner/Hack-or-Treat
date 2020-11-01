@@ -32,6 +32,7 @@ namespace Game1
         public bool chatBox2;
         KeyboardState oldState;
         public bool textShow;
+        public bool haveKnife;
 
         public Npc(int x, int y, SpriteBatch spriteBatch, GameContent gameContent, int dir, int amount)
         {
@@ -91,6 +92,7 @@ namespace Game1
                     // handle the input
                     if (oldState.IsKeyUp(Keys.E) && newState.IsKeyDown(Keys.E))
                     {
+                        textShow = false;
                         chatBox = true;
                     }
                     if (oldState.IsKeyUp(Keys.Space) && newState.IsKeyDown(Keys.Space) && chatBox)
@@ -103,11 +105,13 @@ namespace Game1
                     {
                         chatBox = false;
                         chatBox2 = false;
+                        player.knife = true;
                     }
                     oldState = newState;
                 }
                 else
                 {
+                    textShow = false;
                     chatBox = false;
                     X = nextX;
                     if (inc)
