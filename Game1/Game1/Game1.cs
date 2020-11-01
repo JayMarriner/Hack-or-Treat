@@ -22,6 +22,23 @@ namespace Game1
         private int screenHeight = 0;
         public List<Player> players = new List<Player>();
         public List<Wall> walls = new List<Wall>();
+        public List<Background> backgrounds = new List<Background>();
+        public List<Npc> npcs = new List<Npc>();
+        //public List<Knife> knives = new List<Knife>();
+        public List<Enemy> enemies = new List<Enemy>();
+        private static Texture2D _blankTexture;
+
+        public SpriteFont npcText { get; private set; }
+
+        public static Texture2D BlankTexture(SpriteBatch s)
+        {
+            if (_blankTexture == null)
+            {
+                _blankTexture = new Texture2D(s.GraphicsDevice, 1, 1);
+                //_blankTexture.SetData(new[] { Color.Red });
+            }
+            return _blankTexture;
+        }
 
         public Game1()
         {
@@ -66,21 +83,40 @@ namespace Game1
             }
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-           // graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             //Create player
-            int playerX = (gameContent.player.Width / 2) + 10;
-            int playerY = screenHeight - (gameContent.player.Height / 2) - 10;
-            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 1));
+            int playerX = (gameContent.player.Width / 2) + 50;
+            int playerY = screenHeight - (gameContent.player.Height / 2) - 50;
+            players.Add(new Player(playerX, playerY, screenWidth, screenHeight, spriteBatch, gameContent, 5));
 
             //Create walls
             //Level 1
             walls.Add(new Wall(100, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(175, 625, spriteBatch, gameContent, true));
+            walls.Add(new Wall(175, 825, spriteBatch, gameContent, true));
             walls.Add(new Wall(300, 500, spriteBatch, gameContent, false));
             walls.Add(new Wall(500, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(700, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(775, 375, spriteBatch, gameContent, true));
+            walls.Add(new Wall(775, 175, spriteBatch, gameContent, true));
+            walls.Add(new Wall(900, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(1100, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(1300, 500, spriteBatch, gameContent, false));
+            walls.Add(new Wall(1500, 500, spriteBatch, gameContent, false));
 
+            //Create background
+            backgrounds.Add(new Background(0, 0, 1080, 1920, spriteBatch, gameContent));
+
+            //NPC
+            npcs.Add(new Npc(100, 400, spriteBatch, gameContent, 3, 500));
+
+            //Knife
+            //knives.Add(new Knife(50, 380, spriteBatch, gameContent, 2));
+
+            //Enemy
+            enemies.Add(new Enemy(700, 650, spriteBatch, gameContent, 100));
         }
 
         /// <summary>
@@ -105,6 +141,13 @@ namespace Game1
             // TODO: Add your update logic here
             players.ForEach(x => x.movementUpdate());
             players.ForEach(x => x.Update(walls));
+            players.ForEach(x => x.Update(npcs));
+            npcs.ForEach(x => x.Update());
+            npcs.ForEach(x => x.Update(players));
+            enemies.ForEach(x => x.Update());
+            enemies.ForEach(x => x.Update(players));
+            players.ForEach(x => x.attackUpdate(enemies));
+            //knives.ForEach(x => x.Update());
             base.Update(gameTime);
         }
 
@@ -118,8 +161,12 @@ namespace Game1
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            backgrounds.ForEach(x => x.Draw());
             players.ForEach(x => x.Draw());
             walls.ForEach(x => x.Draw());
+            npcs.ForEach(x => x.Draw());
+            //knives.ForEach(x => x.Draw());
+            enemies.ForEach(x => x.Draw());
             spriteBatch.End();
             base.Draw(gameTime);
         }
